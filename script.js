@@ -24,6 +24,7 @@ const petalColors = [
 
 let petalsRemaining = 8;
 let currentModalOpen = null;
+let musicPlaying = false;
 
 // Crear pétalos de la rosa
 function crearPetalos() {
@@ -235,17 +236,17 @@ function mostrarMensajeFinal() {
     modal.className = 'final-modal';
     modal.innerHTML = `
         <div class="final-card">
-            <div class="final-emoji">🎉</div>
-            <h2 class="final-title">¡Has descubierto todos los mensajes!</h2>
+            <h2 class="final-title">Gracias por ver todos los mensajes</h2>
             <p class="final-message">
-                Cada pétalo llevaba un pedacito de mi corazón.<br>
-                Que este día sea tan especial como tú lo eres para mí.
+                Cada pétalo es un pedacito de mi corazón, y algo de lo mucho que tengo para decirte.<br>
+                Que este día sea tan especial como lo sos para mí, disfruta rodeada de las personas que te quieren.
+                Espero que te haya gustado, y también espero estar muchos cumpleaños a tu lado. Gracias por todo.
             </p>
             <div class="final-emoji">💖</div>
             <p class="final-message" style="font-size: 1.3rem; margin-top: 1rem;">
                 ¡Feliz Cumpleaños!
             </p>
-            <button class="reload-button">Volver a empezar 🔄</button>
+            <button class="reload-button">Lo podes volver a ver cuando quieras</button>
         </div>
     `;
     
@@ -341,8 +342,90 @@ function abrirCarta() {
         setTimeout(() => {
             mainPage.style.transition = 'opacity 0.8s ease-out';
             mainPage.style.opacity = '1';
+            
+            // Iniciar música y letras
+            iniciarMusica();
         }, 50);
     }, 1500);
+}
+
+// Iniciar música de fondo
+function iniciarMusica() {
+    const audio = document.getElementById('background-music');
+    const musicControls = document.getElementById('music-controls');
+    
+    // Configurar audio
+    audio.src = 'music.mp3';
+    
+    // Iniciar desde el segundo 13
+    audio.currentTime = 13;
+    
+    // Volumen inicial bajo (30%)
+    audio.volume = 0.3;
+    
+    // Aumentar volumen gradualmente en 3 segundos
+    let targetVolume = 0.5; // Volumen objetivo (50%)
+    let currentVolume = 0.3;
+    let volumeStep = (targetVolume - currentVolume) / 30; // 30 pasos en 3 segundos
+    
+    let volumeInterval = setInterval(() => {
+        if (currentVolume < targetVolume) {
+            currentVolume += volumeStep;
+            audio.volume = Math.min(currentVolume, targetVolume);
+        } else {
+            clearInterval(volumeInterval);
+        }
+    }, 100); // Cada 100ms
+    
+    // Mostrar controles
+    musicControls.style.display = 'flex';
+    
+    // Intentar reproducir (requiere interacción del usuario)
+    const playPromise = audio.play();
+    
+    if (playPromise !== undefined) {
+        playPromise.then(() => {
+            musicPlaying = true;
+        }).catch(error => {
+            // Si falla por política del navegador, esperar interacción
+            console.log('Esperando interacción del usuario para reproducir música');
+        });
+    }
+}
+
+// Toggle música
+function toggleMusic() {
+    const audio = document.getElementById('background-music');
+    const pauseIcon = document.getElementById('pause-icon');
+    const playIcon = document.getElementById('play-icon');
+    
+    if (musicPlaying) {
+        audio.pause();
+        pauseIcon.style.display = 'none';
+        playIcon.style.display = 'block';
+        musicPlaying = false;
+    } else {
+        audio.play();
+        pauseIcon.style.display = 'block';
+        playIcon.style.display = 'none';
+        musicPlaying = true;
+    }
+}
+
+// Subir volumen
+function subirVolumen() {
+    const audio = document.getElementById('background-music');
+    if (audio.volume <= 0.9) {
+        audio.volume = Math.min(audio.volume + 0.1, 1.0);
+    }
+}
+
+// Bajar volumen
+function bajarVolumen() {
+    const audio = document.getElementById('background-music');
+    if (audio.volume >= 0.1) {
+        audio.volume = Math.max(audio.volume - 0.1, 0);
+    }
 }
 
 // Inicializar
@@ -351,6 +434,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const entranceCard = document.getElementById('entrance-card');
     if (entranceCard) {
         entranceCard.addEventListener('click', abrirCarta);
+    }
+    
+    // Eventos de controles de música
+    const musicToggle = document.getElementById('music-toggle');
+    if (musicToggle) {
+        musicToggle.addEventListener('click', toggleMusic);
+    }
+    
+    const volumeUp = document.getElementById('volume-up');
+    if (volumeUp) {
+        volumeUp.addEventListener('click', subirVolumen);
+    }
+    
+    const volumeDown = document.getElementById('volume-down');
+    if (volumeDown) {
+        volumeDown.addEventListener('click', bajarVolumen);
     }
     
     crearPetalos();
