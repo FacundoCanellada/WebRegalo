@@ -36,11 +36,11 @@ function crearPetalos() {
     const shuffledFrases = [...frases].sort(() => Math.random() - 0.5);
     
     // Los pétalos siempre se posicionan relativo al centro de .rose-flower
-    const radius = 45;
-    const centerX = 70;  // Centro de un contenedor de 140px
-    const centerY = 70;
-    const petalWidth = 26;  // Mitad del ancho del pétalo (52px / 2)
-    const petalHeight = 35; // Mitad de la altura del pétalo (70px / 2)
+    const radius = 50;
+    const centerX = 80;  // Centro fijo que funciona en todas las pantallas
+    const centerY = 80;
+    const petalWidth = 30;
+    const petalHeight = 40;
     
     // Primero crear la rosa base (que se revela)
     const roseBase = document.createElement('div');
