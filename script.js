@@ -421,17 +421,17 @@ function toggleMusic() {
 // Subir volumen
 function subirVolumen() {
     const audio = document.getElementById('background-music');
-    if (audio.volume <= 0.9) {
-        audio.volume = Math.min(audio.volume + 0.1, 1.0);
-    }
+    const newVolume = Math.min(audio.volume + 0.1, 1.0);
+    audio.volume = newVolume;
+    console.log('Volumen subido a:', newVolume.toFixed(1));
 }
 
 // Bajar volumen
 function bajarVolumen() {
     const audio = document.getElementById('background-music');
-    if (audio.volume >= 0.1) {
-        audio.volume = Math.max(audio.volume - 0.1, 0);
-    }
+    const newVolume = Math.max(audio.volume - 0.1, 0);
+    audio.volume = newVolume;
+    console.log('Volumen bajado a:', newVolume.toFixed(1));
 }
 
 // Inicializar
@@ -451,11 +451,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const volumeUp = document.getElementById('volume-up');
     if (volumeUp) {
         volumeUp.addEventListener('click', subirVolumen);
+        volumeUp.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            subirVolumen();
+        });
     }
     
     const volumeDown = document.getElementById('volume-down');
     if (volumeDown) {
         volumeDown.addEventListener('click', bajarVolumen);
+        volumeDown.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            bajarVolumen();
+        });
     }
     
     crearPetalos();
