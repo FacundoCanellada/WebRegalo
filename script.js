@@ -35,35 +35,12 @@ function crearPetalos() {
     // Mezclar frases
     const shuffledFrases = [...frases].sort(() => Math.random() - 0.5);
     
-    // Ajustar tamaños según el ancho de la pantalla
-    const screenWidth = window.innerWidth;
-    let radius, centerX, centerY, petalWidth, petalHeight, rxPetal, ryPetal;
-    
-    if (screenWidth < 480) {
-        radius = 40;
-        centerX = 70;
-        centerY = 70;
-        petalWidth = 26;
-        petalHeight = 35;
-        rxPetal = 22;
-        ryPetal = 32;
-    } else if (screenWidth < 768) {
-        radius = 50;
-        centerX = 80;
-        centerY = 80;
-        petalWidth = 30;
-        petalHeight = 40;
-        rxPetal = 26;
-        ryPetal = 36;
-    } else {
-        radius = 55;
-        centerX = 90;
-        centerY = 90;
-        petalWidth = 34;
-        petalHeight = 45;
-        rxPetal = 28;
-        ryPetal = 38;
-    }
+    // Los pétalos siempre se posicionan relativo al centro de .rose-flower
+    const radius = 45;
+    const centerX = 70;  // Centro de un contenedor de 140px
+    const centerY = 70;
+    const petalWidth = 26;  // Mitad del ancho del pétalo (52px / 2)
+    const petalHeight = 35; // Mitad de la altura del pétalo (70px / 2)
     
     // Primero crear la rosa base (que se revela)
     const roseBase = document.createElement('div');
@@ -102,7 +79,7 @@ function crearPetalos() {
                         <stop offset="100%" style="stop-color:${petalColors[i].shadow}" />
                     </linearGradient>
                 </defs>
-                <ellipse cx="30" cy="40" rx="${rxPetal}" ry="${ryPetal}" 
+                <ellipse cx="30" cy="40" rx="26" ry="36" 
                          fill="url(#grad${i})" 
                          opacity="0.95"/>
             </svg>
