@@ -1,13 +1,13 @@
 // Array de frases de poemas
 const frases = [
-    "Eres la luz que ilumina mis días más oscuros.",
-    "En tus ojos encuentro el universo completo.",
-    "Cada momento contigo es un regalo del destino.",
-    "Tu sonrisa es la melodía favorita de mi corazón.",
-    "Contigo el tiempo se detiene y la vida cobra sentido.",
-    "Eres el sueño que nunca quiero despertar.",
-    "Tu amor es la poesía que mi alma siempre buscó.",
-    "En tus brazos encontré mi hogar."
+    "Gracias por aparecer en mi vida.",
+    "Me encanta hablar con vos todos los días y poder decirte lo que siento.",
+    "Te vi la primera vez y supe que no quería nada más.",
+    "Aspiro a todo con vos. Todo es todo.",
+    "Quiero pasar todas las tardes abrazado a vos.",
+    "Es una fortuna poder tenerte todos los días.",
+    "Gracias por permitirme ser como soy con vos.",
+    "Abrazarte se siente como estar en casa."
 ];
 
 // Colores de pétalos (rosa a rojo)
@@ -35,6 +35,36 @@ function crearPetalos() {
     // Mezclar frases
     const shuffledFrases = [...frases].sort(() => Math.random() - 0.5);
     
+    // Ajustar tamaños según el ancho de la pantalla
+    const screenWidth = window.innerWidth;
+    let radius, centerX, centerY, petalWidth, petalHeight, rxPetal, ryPetal;
+    
+    if (screenWidth < 480) {
+        radius = 40;
+        centerX = 70;
+        centerY = 70;
+        petalWidth = 26;
+        petalHeight = 35;
+        rxPetal = 22;
+        ryPetal = 32;
+    } else if (screenWidth < 768) {
+        radius = 50;
+        centerX = 80;
+        centerY = 80;
+        petalWidth = 30;
+        petalHeight = 40;
+        rxPetal = 26;
+        ryPetal = 36;
+    } else {
+        radius = 55;
+        centerX = 90;
+        centerY = 90;
+        petalWidth = 34;
+        petalHeight = 45;
+        rxPetal = 28;
+        ryPetal = 38;
+    }
+    
     // Primero crear la rosa base (que se revela)
     const roseBase = document.createElement('div');
     roseBase.className = 'rose-base';
@@ -52,14 +82,13 @@ function crearPetalos() {
         const angle = angleStep * i;
         const radian = (angle * Math.PI) / 180;
         
-        const radius = 50;
-        const x = 80 + radius * Math.cos(radian);
-        const y = 80 + radius * Math.sin(radian);
+        const x = centerX + radius * Math.cos(radian);
+        const y = centerY + radius * Math.sin(radian);
         
         const petal = document.createElement('div');
         petal.className = 'petal petal-clickable';
-        petal.style.left = x - 30 + 'px';
-        petal.style.top = y - 40 + 'px';
+        petal.style.left = x - petalWidth + 'px';
+        petal.style.top = y - petalHeight + 'px';
         petal.style.transform = `rotate(${angle - 90}deg)`;
         petal.dataset.index = i;
         petal.dataset.message = shuffledFrases[i];
@@ -73,7 +102,7 @@ function crearPetalos() {
                         <stop offset="100%" style="stop-color:${petalColors[i].shadow}" />
                     </linearGradient>
                 </defs>
-                <ellipse cx="30" cy="40" rx="26" ry="36" 
+                <ellipse cx="30" cy="40" rx="${rxPetal}" ry="${ryPetal}" 
                          fill="url(#grad${i})" 
                          opacity="0.95"/>
             </svg>

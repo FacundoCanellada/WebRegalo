@@ -12,6 +12,8 @@ body {
     overflow-x: hidden;
     overflow-y: auto;
     min-height: 100vh;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 /* Animaciones de entrada */
@@ -41,8 +43,15 @@ body {
 /* Contenedor principal de la rosa */
 #rose-container {
     position: relative;
-    width: 300px;
-    height: 450px;
+    width: 260px;
+    height: 400px;
+}
+
+@media (min-width: 480px) {
+    #rose-container {
+        width: 300px;
+        height: 450px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -58,10 +67,17 @@ body {
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 200px;
-    height: 280px;
+    width: 170px;
+    height: 240px;
     z-index: 50;
     pointer-events: none;
+}
+
+@media (min-width: 480px) {
+    .dome {
+        width: 200px;
+        height: 280px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -124,12 +140,19 @@ body {
 /* Contenedor del tallo */
 .rose-stem-container {
     position: absolute;
-    bottom: 60px;
+    bottom: 50px;
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
-    height: 300px;
+    height: 260px;
     z-index: 10;
+}
+
+@media (min-width: 480px) {
+    .rose-stem-container {
+        bottom: 60px;
+        height: 300px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -145,13 +168,20 @@ body {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 6px;
-    height: 180px;
+    width: 5px;
+    height: 150px;
     background: linear-gradient(to bottom, #2d5016, #1a3010);
     border-radius: 3px;
     box-shadow: 
         2px 0 5px rgba(0, 0, 0, 0.3),
         inset -1px 0 2px rgba(0, 0, 0, 0.5);
+}
+
+@media (min-width: 480px) {
+    .rose-stem {
+        width: 6px;
+        height: 180px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -164,23 +194,40 @@ body {
 /* Hojas */
 .rose-leaf {
     position: absolute;
-    width: 40px;
-    height: 25px;
+    width: 35px;
+    height: 22px;
     background: linear-gradient(135deg, #3d7018, #2d5016);
     border-radius: 0 50% 50% 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .rose-leaf-left {
-    bottom: 100px;
-    left: calc(50% - 45px);
+    bottom: 80px;
+    left: calc(50% - 40px);
     transform: rotate(-30deg);
 }
 
 .rose-leaf-right {
-    bottom: 60px;
-    right: calc(50% - 45px);
+    bottom: 50px;
+    right: calc(50% - 40px);
     transform: rotate(210deg);
+}
+
+@media (min-width: 480px) {
+    .rose-leaf {
+        width: 40px;
+        height: 25px;
+    }
+    
+    .rose-leaf-left {
+        bottom: 100px;
+        left: calc(50% - 45px);
+    }
+    
+    .rose-leaf-right {
+        bottom: 60px;
+        right: calc(50% - 45px);
+    }
 }
 
 @media (min-width: 768px) {
@@ -206,8 +253,15 @@ body {
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 160px;
-    height: 160px;
+    width: 140px;
+    height: 140px;
+}
+
+@media (min-width: 480px) {
+    .rose-flower {
+        width: 160px;
+        height: 160px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -223,9 +277,16 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 80px;
-    height: 100px;
+    width: 65px;
+    height: 85px;
     z-index: 5;
+}
+
+@media (min-width: 480px) {
+    .rose-base {
+        width: 80px;
+        height: 100px;
+    }
 }
 
 .rose-inner {
@@ -270,12 +331,19 @@ body {
 /* Pétalos individuales */
 .petal {
     position: absolute;
-    width: 60px;
-    height: 80px;
+    width: 52px;
+    height: 70px;
     cursor: pointer;
     transform-origin: center bottom;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 20;
+}
+
+@media (min-width: 480px) {
+    .petal {
+        width: 60px;
+        height: 80px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -289,6 +357,20 @@ body {
     filter: brightness(1.4) drop-shadow(0 0 15px rgba(255, 105, 180, 1));
     transform: scale(1.12) translateY(-5px);
     z-index: 25;
+}
+
+/* En móviles, usar active en lugar de hover */
+@media (hover: none) and (pointer: coarse) {
+    .petal:hover {
+        filter: none;
+        transform: none;
+    }
+    
+    .petal:active {
+        filter: brightness(1.4) drop-shadow(0 0 15px rgba(255, 105, 180, 1));
+        transform: scale(1.08) translateY(-3px);
+        z-index: 25;
+    }
 }
 
 .petal.falling {
@@ -332,6 +414,7 @@ body {
     padding: 20px;
     animation: modal-fade-in 0.3s ease-out;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 @keyframes modal-fade-in {
@@ -463,6 +546,19 @@ body {
     transform: translateY(0);
 }
 
+/* Mejorar botones en móviles */
+@media (hover: none) and (pointer: coarse) {
+    .message-button:hover {
+        transform: none;
+        box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+    }
+    
+    .message-button:active {
+        transform: scale(0.98);
+        box-shadow: 0 2px 10px rgba(139, 92, 246, 0.5);
+    }
+}
+
 /* Modal final */
 .final-modal {
     position: fixed;
@@ -480,6 +576,7 @@ body {
     animation: modal-fade-in 0.5s ease-out;
     overflow-y: auto;
     overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
 }
 
 .final-card {
@@ -622,6 +719,19 @@ body {
 
 .reload-button:active {
     transform: translateY(-1px);
+}
+
+/* Mejorar interacción en móviles */
+@media (hover: none) and (pointer: coarse) {
+    .reload-button:hover {
+        transform: none;
+        box-shadow: 0 6px 20px rgba(106, 27, 154, 0.5);
+    }
+    
+    .reload-button:active {
+        transform: scale(0.98);
+        box-shadow: 0 4px 15px rgba(106, 27, 154, 0.6);
+    }
 }
 
 /* Partículas */
@@ -846,15 +956,33 @@ body {
 }
 
 .entrance-card {
-    width: 280px;
-    height: 380px;
+    width: 240px;
+    height: 340px;
     position: relative;
     transform-style: preserve-3d;
     transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+@media (min-width: 480px) {
+    .entrance-card {
+        width: 280px;
+        height: 380px;
+    }
+}
+
 .entrance-card:hover {
     transform: translateY(-10px);
+}
+
+/* Mejorar el toque en móviles */
+@media (hover: none) and (pointer: coarse) {
+    .entrance-card:hover {
+        transform: none;
+    }
+    
+    .entrance-card:active {
+        transform: scale(0.98);
+    }
 }
 
 .entrance-card-container.opening .entrance-card {
@@ -936,10 +1064,17 @@ body {
     }
 }
 
+@media (min-width: 1024px) {
+    .entrance-card {
+        width: 360px;
+        height: 460px;
+    }
+}
+
 /* Controles de música */
 .music-control-btn {
-    width: 56px;
-    height: 56px;
+    width: 48px;
+    height: 48px;
     background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(42, 42, 78, 0.95) 100%);
     border: 2px solid rgba(255, 105, 180, 0.5);
     border-radius: 50%;
@@ -955,6 +1090,25 @@ body {
     color: rgba(255, 105, 180, 0.9);
 }
 
+@media (min-width: 768px) {
+    .music-control-btn {
+        width: 56px;
+        height: 56px;
+    }
+}
+
+.music-control-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+@media (min-width: 768px) {
+    .music-control-btn svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
 .music-control-btn:hover {
     transform: scale(1.1);
     border-color: rgba(255, 105, 180, 1);
@@ -965,6 +1119,25 @@ body {
     color: rgba(255, 105, 180, 1);
 }
 
+/* Mejorar interacción táctil en móviles */
+@media (hover: none) and (pointer: coarse) {
+    .music-control-btn:hover {
+        transform: none;
+        border-color: rgba(255, 105, 180, 0.5);
+        background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(42, 42, 78, 0.95) 100%);
+        box-shadow: 
+            0 4px 15px rgba(0, 0, 0, 0.5),
+            inset 0 0 20px rgba(138, 43, 226, 0.1);
+        color: rgba(255, 105, 180, 0.9);
+    }
+    
+    .music-control-btn:active {
+        transform: scale(0.95);
+        border-color: rgba(255, 105, 180, 1);
+        color: rgba(255, 105, 180, 1);
+    }
+}
+
 .music-control-btn:active {
     transform: scale(0.95);
 }
@@ -973,10 +1146,15 @@ body {
     text-decoration: none;
 }
 
-@media (max-width: 640px) {
-    .music-control-btn {
-        width: 48px;
-        height: 48px;
+#music-controls {
+    bottom: 1rem;
+    right: 1rem;
+}
+
+@media (min-width: 768px) {
+    #music-controls {
+        bottom: 1.5rem;
+        right: 1.5rem;
     }
 }
 
