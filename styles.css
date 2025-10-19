@@ -1,0 +1,866 @@
+/* Fuentes personalizadas */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Cinzel:wght@400;600;700&family=Great+Vibes&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cormorant Garamond', serif;
+    overflow-x: hidden;
+}
+
+/* Animaciones de entrada */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fade-in 1s ease-out;
+}
+
+.animate-fade-in-delay {
+    animation: fade-in 1s ease-out 0.3s backwards;
+}
+
+.animate-fade-in-delay-2 {
+    animation: fade-in 1s ease-out 0.6s backwards;
+}
+
+/* Contenedor principal de la rosa */
+#rose-container {
+    position: relative;
+    width: 300px;
+    height: 450px;
+}
+
+@media (min-width: 768px) {
+    #rose-container {
+        width: 350px;
+        height: 500px;
+    }
+}
+
+/* Cúpula de cristal */
+.dome {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 280px;
+    z-index: 50;
+    pointer-events: none;
+}
+
+@media (min-width: 768px) {
+    .dome {
+        width: 240px;
+        height: 320px;
+    }
+}
+
+.dome-glass {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 85%;
+    background: linear-gradient(135deg, 
+        rgba(100, 150, 255, 0.1) 0%,
+        rgba(150, 180, 255, 0.05) 50%,
+        rgba(100, 150, 255, 0.1) 100%);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    border: 2px solid rgba(150, 180, 255, 0.25);
+    backdrop-filter: blur(0.5px);
+    box-shadow: 
+        inset -10px -10px 30px rgba(100, 150, 255, 0.1),
+        inset 10px 10px 30px rgba(200, 220, 255, 0.05),
+        0 20px 40px rgba(0, 0, 0, 0.3);
+    animation: dome-shimmer 4s ease-in-out infinite;
+}
+
+@keyframes dome-shimmer {
+    0%, 100% {
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+.dome-base {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 110%;
+    height: 25px;
+    background: linear-gradient(to bottom, #2a2a3a, #1a1a2a);
+    border-radius: 50%;
+    box-shadow: 
+        0 5px 15px rgba(0, 0, 0, 0.5),
+        inset 0 2px 5px rgba(255, 255, 255, 0.1);
+}
+
+@media (min-width: 768px) {
+    .dome-base {
+        height: 30px;
+    }
+}
+
+/* Contenedor del tallo */
+.rose-stem-container {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 300px;
+    z-index: 10;
+}
+
+@media (min-width: 768px) {
+    .rose-stem-container {
+        bottom: 80px;
+        height: 340px;
+    }
+}
+
+/* Tallo de la rosa */
+.rose-stem {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 180px;
+    background: linear-gradient(to bottom, #2d5016, #1a3010);
+    border-radius: 3px;
+    box-shadow: 
+        2px 0 5px rgba(0, 0, 0, 0.3),
+        inset -1px 0 2px rgba(0, 0, 0, 0.5);
+}
+
+@media (min-width: 768px) {
+    .rose-stem {
+        width: 8px;
+        height: 200px;
+    }
+}
+
+/* Hojas */
+.rose-leaf {
+    position: absolute;
+    width: 40px;
+    height: 25px;
+    background: linear-gradient(135deg, #3d7018, #2d5016);
+    border-radius: 0 50% 50% 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.rose-leaf-left {
+    bottom: 100px;
+    left: calc(50% - 45px);
+    transform: rotate(-30deg);
+}
+
+.rose-leaf-right {
+    bottom: 60px;
+    right: calc(50% - 45px);
+    transform: rotate(210deg);
+}
+
+@media (min-width: 768px) {
+    .rose-leaf {
+        width: 50px;
+        height: 30px;
+    }
+    
+    .rose-leaf-left {
+        bottom: 120px;
+        left: calc(50% - 55px);
+    }
+    
+    .rose-leaf-right {
+        bottom: 70px;
+        right: calc(50% - 55px);
+    }
+}
+
+/* Flor (pétalos) */
+.rose-flower {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 160px;
+    height: 160px;
+}
+
+@media (min-width: 768px) {
+    .rose-flower {
+        width: 180px;
+        height: 180px;
+    }
+}
+
+/* Rosa base 3D que se revela */
+.rose-base {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 100px;
+    z-index: 5;
+}
+
+.rose-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+}
+
+.rose-petal-layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    opacity: 0.9;
+}
+
+.rose-layer-1 {
+    background: radial-gradient(ellipse at center, #ff69b4, #ff1493);
+    transform: rotateY(0deg) translateZ(10px);
+    box-shadow: 0 0 20px rgba(255, 20, 147, 0.6);
+}
+
+.rose-layer-2 {
+    background: radial-gradient(ellipse at center, #ff1493, #c71585);
+    transform: rotateY(60deg) translateZ(8px);
+    width: 90%;
+    height: 90%;
+    top: 5%;
+    left: 5%;
+}
+
+.rose-layer-3 {
+    background: radial-gradient(ellipse at center, #c71585, #8b0a50);
+    transform: rotateY(120deg) translateZ(6px);
+    width: 80%;
+    height: 80%;
+    top: 10%;
+    left: 10%;
+}
+
+/* Pétalos individuales */
+.petal {
+    position: absolute;
+    width: 60px;
+    height: 80px;
+    cursor: pointer;
+    transform-origin: center bottom;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 20;
+}
+
+@media (min-width: 768px) {
+    .petal {
+        width: 68px;
+        height: 90px;
+    }
+}
+
+.petal:hover {
+    filter: brightness(1.4) drop-shadow(0 0 15px rgba(255, 105, 180, 1));
+    transform: scale(1.12) translateY(-5px);
+    z-index: 25;
+}
+
+.petal.falling {
+    animation: petal-fall 1.8s cubic-bezier(0.4, 0, 0.6, 1) forwards !important;
+    pointer-events: none;
+    z-index: 100 !important;
+}
+
+@keyframes petal-fall {
+    0% {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg) scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: translateY(250px) rotate(90deg) scale(0.9);
+    }
+    100% {
+        transform: translateY(650px) rotate(200deg) scale(0.3);
+        opacity: 0;
+    }
+}
+
+.petal svg {
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+}
+
+/* Modal de mensaje */
+.message-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 20px;
+    animation: modal-fade-in 0.3s ease-out;
+}
+
+@keyframes modal-fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.message-card {
+    background: linear-gradient(135deg, #1a1a2e 0%, #2a2a4e 100%);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(138, 43, 226, 0.3);
+    animation: card-slide-up 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes card-slide-up {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.message-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(138, 43, 226, 0.1) 0%, transparent 70%);
+    animation: rotate-bg 20s linear infinite;
+}
+
+@keyframes rotate-bg {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.message-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+.message-emoji {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+    animation: bounce-emoji 1s ease-in-out infinite;
+}
+
+@keyframes bounce-emoji {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.message-text {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.6rem;
+    line-height: 1.8;
+    color: #e8d5ff;
+    margin: 1.5rem 0;
+    font-weight: 400;
+}
+
+@media (max-width: 640px) {
+    .message-text {
+        font-size: 1.2rem;
+    }
+}
+
+.message-button {
+    background: linear-gradient(135deg, #8b5cf6, #a855f7);
+    color: white;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+    margin-top: 1rem;
+}
+
+.message-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.6);
+}
+
+.message-button:active {
+    transform: translateY(0);
+}
+
+/* Modal final */
+.final-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(15px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    padding: 20px;
+    animation: modal-fade-in 0.5s ease-out;
+}
+
+.final-card {
+    background: linear-gradient(135deg, #1a1a2e 0%, #2a2a4e 50%, #1a1a2e 100%);
+    border-radius: 30px;
+    padding: 3rem 2rem;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 
+        0 30px 100px rgba(0, 0, 0, 0.8),
+        0 0 0 2px rgba(255, 105, 180, 0.5),
+        inset 0 0 80px rgba(138, 43, 226, 0.15);
+    animation: final-card-appear 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes final-card-appear {
+    from {
+        opacity: 0;
+        transform: scale(0.5) translateY(100px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.final-title {
+    font-family: 'Cinzel', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ff69b4, #ff1493, #c71585, #a855f7);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+}
+
+@media (max-width: 640px) {
+    .final-title {
+        font-size: 2rem;
+    }
+}
+
+.final-message {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.8rem;
+    color: #e8d5ff;
+    line-height: 1.8;
+    margin: 2rem 0;
+    font-weight: 400;
+}
+
+@media (max-width: 640px) {
+    .final-message {
+        font-size: 1.2rem;
+    }
+}
+
+.final-emoji {
+    font-size: 4rem;
+    margin: 1rem 0;
+    display: inline-block;
+    animation: bounce-emoji 1s ease-in-out infinite;
+}
+
+.reload-button {
+    background: linear-gradient(135deg, #6a1b9a, #8b5cf6);
+    color: white;
+    border: none;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(106, 27, 154, 0.5);
+    margin-top: 1rem;
+}
+
+.reload-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(106, 27, 154, 0.7);
+}
+
+.reload-button:active {
+    transform: translateY(-1px);
+}
+
+/* Partículas */
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: radial-gradient(circle, rgba(138, 43, 226, 0.8), rgba(139, 92, 246, 0.4));
+    border-radius: 50%;
+    pointer-events: none;
+    animation: float-particle 20s infinite ease-in-out;
+}
+
+@keyframes float-particle {
+    0%, 100% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) translateX(50px);
+        opacity: 0;
+    }
+}
+
+/* Animaciones personalizadas */
+@keyframes gradient {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+.animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 15s ease infinite;
+}
+
+@keyframes fade-in-down {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in-down {
+    animation: fade-in-down 1s ease-out;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.animate-fade-in {
+    animation: fade-in 1.5s ease-out 0.5s backwards;
+}
+
+@keyframes bounce-slow {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.animate-bounce-slow {
+    animation: bounce-slow 2s ease-in-out infinite;
+}
+
+.animation-delay-300 {
+    animation-delay: 300ms;
+}
+
+@keyframes pulse-slow {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.9;
+    }
+}
+
+.animate-pulse-slow {
+    animation: pulse-slow 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -100% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.animate-shimmer {
+    background-size: 200% auto;
+    animation: shimmer 3s linear infinite;
+}
+
+/* Partículas al hacer clic */
+.click-particle {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    animation: click-particle-burst 0.8s ease-out forwards;
+}
+
+@keyframes click-particle-burst {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--tx), var(--ty)) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Partículas flotantes */
+.particle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: radial-gradient(circle, rgba(156, 39, 176, 0.8), rgba(123, 44, 191, 0.4));
+    border-radius: 50%;
+    pointer-events: none;
+    animation: float-particle 15s infinite ease-in-out;
+}
+
+@keyframes float-particle {
+    0%, 100% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) translateX(50px);
+        opacity: 0;
+    }
+}
+
+/* Overlay de fondo oscuro */
+.overlay {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    animation: overlay-enter 0.3s ease;
+}
+
+@keyframes overlay-enter {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Decoraciones en la carta */
+.card-decoration {
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0.2;
+    pointer-events: none;
+}
+
+.card-decoration.top-left {
+    top: 10px;
+    left: 10px;
+    animation: rotate-decoration 20s linear infinite;
+}
+
+.card-decoration.top-right {
+    top: 10px;
+    right: 10px;
+    animation: rotate-decoration 20s linear infinite reverse;
+}
+
+.card-decoration.bottom-left {
+    bottom: 10px;
+    left: 10px;
+    animation: rotate-decoration 25s linear infinite;
+}
+
+.card-decoration.bottom-right {
+    bottom: 10px;
+    right: 10px;
+    animation: rotate-decoration 25s linear infinite reverse;
+}
+
+/* Página de entrada con carta */
+.entrance-card-container {
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.entrance-card {
+    width: 280px;
+    height: 380px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.entrance-card:hover {
+    transform: translateY(-10px);
+}
+
+.entrance-card-container.opening .entrance-card {
+    animation: card-open 1.5s ease-out forwards;
+}
+
+@keyframes card-open {
+    0% {
+        transform: rotateY(0deg) scale(1);
+    }
+    50% {
+        transform: rotateY(180deg) scale(1.1);
+    }
+    100% {
+        transform: rotateY(180deg) scale(0);
+        opacity: 0;
+    }
+}
+
+.entrance-card-front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1a1a2e 0%, #2a2a4e 100%);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.6),
+        0 0 0 2px rgba(255, 105, 180, 0.4),
+        inset 0 0 60px rgba(138, 43, 226, 0.1);
+    transition: all 0.3s ease;
+}
+
+.entrance-card:hover .entrance-card-front {
+    box-shadow: 
+        0 25px 80px rgba(0, 0, 0, 0.8),
+        0 0 0 3px rgba(255, 105, 180, 0.6),
+        inset 0 0 80px rgba(138, 43, 226, 0.2);
+}
+
+.entrance-card-front::before {
+    content: '✨';
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 1.5rem;
+    animation: sparkle 2s ease-in-out infinite;
+}
+
+.entrance-card-front::after {
+    content: '✨';
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 1.5rem;
+    animation: sparkle 2s ease-in-out infinite 1s;
+}
+
+@keyframes sparkle {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+@media (min-width: 768px) {
+    .entrance-card {
+        width: 320px;
+        height: 420px;
+    }
+}
+
